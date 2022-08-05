@@ -1,0 +1,94 @@
+.form-inline .has-feedback .form-control-feedback {
+	top: 20px;
+}
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	margin-bottom: 320px; /*spazio footer*/
+	background-color: #F9F9F9;
+}
+
+::-webkit-scrollbar { /*accedere a funzionalità del browser*/
+	display: none;
+}
+
+footer {
+	position: absolute;
+	width: 100%;
+	height: 300px;
+	background: #00171F;
+	color: white;
+	bottom: 0;
+}
+
+.navbar-inverse {
+	background: #00171F;
+	border-radius: 0;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: white;
+}
+
+.navbar-inverse .navbar-brand {
+	color: white;
+}
+
+@media screen and (max-width: 738px) {
+	footer {
+		height: 480px;
+	}
+	body {
+		margin-bottom: 500px;
+	}
+}
+
+footer nav {
+	float: left;
+	padding: 30px;
+}
+
+footer section {
+	float: left;
+	padding: 30px;
+}
+
+p.copyright {
+	clear: both;
+	margin-left: 30px;
+	padding-bottom: 30px;
+}
+
+a {
+	color: dark-grey;
+}
+
+a:hoover {
+	color: #00A7E1;
+}
+
+.btn-info, .bg-info {
+	background: dark-grey;
+}
+
+.text-info {
+	color: dark-grey;
+}
+
+.text-white {
+	color: white;
+}
+
+* {
+	font-family: 'Catamaran', sans-serif;
+	font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+

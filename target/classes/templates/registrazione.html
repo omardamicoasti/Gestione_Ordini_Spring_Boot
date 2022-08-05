@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/cdn :: cdn"></head>
+<body>
+
+<div th:insert="fragments/nav :: navbar"></div>
+
+	<div class="container">
+
+		<div class="page-header">
+			<h3>Inserire i dati per la registrazione</h3>
+		</div>
+
+		<form th:action="@{/registrazione}" th:object="${utente}" method="post" class="form-horizontal" id="userForm">
+
+			<!-- ---------------------------------------------NOME -->
+			<div class="form-group">
+
+				<label class="col-md-1 control-label">Nome</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"> <i
+							class="glyphicon glyphicon-user"></i>
+						</span> 
+						<input type="text" th:field="*{nome}" name="nome" placeholder="Nome..." class="form-control" id="nome">
+					</div>
+				</div>
+				
+				<div class="col-md-7 control-label" id="infoNome"></div>
+			</div>
+			
+			<!-- ---------------------------------------------COGNOME -->
+			<div class="form-group">
+
+				<label class="col-md-1 control-label">Cognome</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"> <i
+							class="glyphicon glyphicon-user"></i>
+						</span>
+						<input type="text" th:field="*{cognome}" name="cognome" placeholder="Cognome..." class="form-control" id="cognome">
+					</div>
+				</div>
+				
+				<div class="col-md-7 control-label" id="infoCognome"></div>
+			</div>
+			
+			<!-- ---------------------------------------------INDIRIZZO -->
+			<div class="form-group">
+
+				<label class="col-md-1 control-label">Indirizzo</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"> <i
+							class="glyphicon glyphicon-home"></i>
+						</span> 
+						<textarea cols="40" rows="3" th:field="*{indirizzo}" name="indirizzo" 
+							placeholder="Indirizzo..." class="form-control" 
+							style="resize: none" id="indirizzo"></textarea>
+					</div>
+				</div>
+				
+				<div class="col-md-7 control-label" id="infoIndirizzo"></div>
+			</div>
+			
+			<!-- ---------------------------------------------CAP -->
+			<div class="form-group">
+
+				<label class="col-md-1 control-label">Cap</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"> <i
+							class="glyphicon glyphicon-home"></i>
+						</span>
+						<input type="text" th:field="*{cap}" name="cap" placeholder="CAP..." maxlength="5" class="form-control" id="cap">
+					</div>
+				</div>
+				
+				<div class="col-md-7 control-label" id="infoCap"></div>
+			</div>
+			
+			<!-- ---------------------------------------------NASCITA -->
+			<div class="form-group">
+
+				<label class="col-md-1 control-label">Nascita</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group date" id="dp">
+						<span class="input-group-addon"> <i
+							class="glyphicon glyphicon-calendar"></i>
+						</span>
+						<input type="text" th:field="*{data}" name="data" placeholder="YYYY/MM/DD..." class="form-control" id="data">
+					</div>
+				</div>
+				
+				<div class="col-md-7 control-label" id="infoNascita"></div>
+			</div>
+			
+			<script>
+			
+				$(function() {
+					$('#dp').datepicker({
+						format: 'yyyy/mm/dd',
+						autoclose: true,
+						startDate: '1900/01/01',
+						endDate: new Date()
+					}).on(
+						'changeDate',
+						function(e) {
+							$('#userForm').bootstrapValidator(
+									'revalidateField', 'data');
+						});
+				});
+			
+			</script>
+			
+			<!-- ---------------------------------------------USERNAME -->
+			<div class="form-group">
+
+				<label class="col-md-1 control-label">Username</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"> <i
+							class="glyphicon glyphicon-user"></i>
+						</span> 
+						<input type="text" th:field="*{username}" name="username" placeholder="Username..." class="form-control" id="username">
+					</div>
+				</div>
+				
+				<div class="col-md-7 control-label" id="infoUsername">
+					<p id="userCheck" th:text="${checkUser}" style="color: red; font-size: 12px"></p>
+				</div>
+			</div>
+			<script>
+				$('#username').on('input', function() {
+					$('#userCheck').empty();	
+				});
+			</script>
+			
+			<!-- ---------------------------------------------PASSWORD -->
+			<div class="form-group">
+
+				<label class="col-md-1 control-label">Password</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"> <i
+							class="glyphicon glyphicon-lock"></i>
+						</span> 
+						<input type="password" th:field="*{password}" name="password" placeholder="Password..." class="form-control" id="password" maxlength="15">
+					</div>
+				</div>
+				
+				<div class="col-md-7 control-label" id="infoPassword"></div>
+			</div>
+			
+			<!-- ---------------------------------------------EMAIL -->
+			<div class="form-group">
+
+				<label class="col-md-1 control-label">Email</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"> <i
+							class="glyphicon glyphicon-envelope"></i>
+						</span> 
+						<input type="text" th:field="*{email}" name="email" placeholder="Email..." class="form-control" id="email">
+					</div>
+				</div>
+				
+				<div class="col-md-7 control-label" id="infoEmail"></div>
+			</div>
+			
+			<div class="row">
+			
+				<div class="col-md-4 col-md-offset-1">
+					<button type="submit" class="btn btn-warning">
+						Registrati&nbsp;<span class="glyphicon glyphicon-send"></span> 
+					</button>
+				</div>
+			
+			</div>
+			
+		</form>
+
+	</div>
+
+<footer th:include="fragments/footer :: footer"></footer>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/cdn :: cdn"></head>
+<body>
+
+<div th:insert="fragments/nav :: navbar"></div>
+
+	<div class="container">
+
+		<div class="page-header">
+			<h3>Riepilogo Ordine </h3>
+		</div>
+		<p>
+			Codice ordine: 
+			<th:block th:text="${idOrdine}"/>
+		</p>
+		<p>
+			Totale: 
+			<th:block th:text="${#numbers.formatCurrency(totale)}"/>
+		</p>
+		
+		<div class="table-responsive">
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Marca</th>
+						<th>Modello</th>
+						<th>Prezzo</th>
+						<th>Quantita</th>
+						<th>Totale parziale</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="articolo : ${ordineList}">
+						<td th:text="${articolo[0]}"></td>
+						<td th:text="${articolo[1]}"></td>
+						<td th:text="${articolo[2]}"></td>
+						<td th:text="${articolo[3]}"></td>
+						<td
+							th:with="prezzo = ${T(java.lang.Double).parseDouble(articolo[2])},
+							qta = ${T(java.lang.Double).parseDouble(articolo[3])},
+							parziale = ${prezzo*qta}"
+							th:text="${#numbers.formatCurrency(parziale)}">
+						</td>
+						
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="btn-group justify-content-between mt-3 mb-3" role="group">
+			<a th:href="@{/ordini}" role="button" class="btn btn-default" style="width:200px;">Lista ordini</a>
+			<a th:href="@{/acquisti}" role="button" class="btn btn-default" style="width:200px;">Nuovo ordine</a>
+		</div>
+	</div>
+<footer th:include="fragments/footer :: footer"></footer>
+</body>
+</html>

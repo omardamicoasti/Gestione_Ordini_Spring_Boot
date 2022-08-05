@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/cdn :: cdn"></head>
+<body>
+	<div th:insert="fragments/nav :: navbar"></div>
+	<div class="container">
+		<header class="page-header">
+			<h3>Gestione ordini</h3>
+		</header>
+
+		<ul class="nav nav-tabs">
+			<li role="presentation"><a th:href="@{/admin/adminhome}">Home</a></li>
+			<li role="presentation" class="active"><a th:href="@{/admin/gestioneOrdini}">Gestione ordini</a></li>
+			<li role="presentation"><a th:href="@{/admin/gestioneArticoli}">Gestione articoli</a></li>
+			<li role="presentation"><a th:href="@{/admin/nuovoAdmin}">Registra amministratore</a></li>
+		</ul>
+
+		<table class="table table-hover" style="margin-top:30px">
+			<thead>
+				<tr>
+					<th>Id Ordine</th>
+					<th>Data</th>
+					<th>Totale</th>
+					<th>Username</th>
+					<th>Elimina</th>
+					<th>Info</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ordine: ${listaOrdini}" style="vertical-align: middle">
+				
+					<td style="vertical-align: middle;" th:text="${ordine.getIdOrdine}"></td>
+					<td style="vertical-align: middle;" th:text="${#dates.format(ordine.getData, 'dd-MM-yyyy')}"></td>
+					<td style="vertical-align: middle;" th:text="${#numbers.formatCurrency(ordine.getTotale)}"></td>
+					<td style="vertical-align: middle;" th:text="${ordine.getUtente.getUsername}"></td>
+
+					<td style="vertical-align: middle;">
+						<a th:href="@{|/admin/eliminaOrdine/${ordine.getIdOrdine()}|}" role="button" class="btn btn-sm btn-danger"> 
+							<span class="glyphicon glyphicon-trash"></span>
+						</a>
+					</td>
+
+					<td style="vertical-align: middle;">
+						<a th:href="@{|/admin/visualizzaOrdine/${ordine.getIdOrdine()}|}" role="button" class="btn btn-sm btn-info"> 
+							<span class="glyphicon glyphicon-search"></span>
+						</a>
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	<footer th:include="fragments/footer :: footer"></footer>
+</body>
+</html>

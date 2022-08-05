@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/cdn :: cdn"></head>
+<body>
+
+<div th:insert="fragments/nav :: navbar"></div>
+
+	<div class="container">
+		<div class="jumbotron text-center mt-4">
+			<h1>Catè</h1>
+			<a class="btn btn-light btn-lg btn-block" role="button" href="/acquisti">
+				Shop all products now&nbsp;
+				<i class="glyphicon glyphicon-chevron-right"></i>
+			</a>
+		</div>
+	</div>
+
+
+</body>
+<style>
+	
+	body {
+		margin-bottom: 0;
+		background-color: white;
+	}
+	
+	.container {
+		height: 90vh;
+		display: flex;
+		justify-content: center;
+		align-items: space-around;
+	}
+	
+	.jumbotron {
+		width: 90%;
+		background: url('../img/background.png');
+		background-size: 105%;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	
+	.container h1 {
+		font-size: 20em;
+		color: white;
+	}
+	.container a {
+		font-size: 2em;
+		font-weight: bold;
+		color: white;
+	}
+	
+</style>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/cdn :: cdn"></head>
+<body>
+
+	<div th:insert="fragments/nav :: navbar"></div>
+
+	<div class="container">
+		<div class="page-header">
+			<h3>Sezione di amministrazione</h3>
+		</div>
+
+		<ul class="nav nav-tabs">
+			<li role="presentation" class="active"><a th:href="@{/admin/adminhome}">Home</a></li>
+			<li role="presentation"><a th:href="@{/admin/gestioneOrdini}">Gestione ordini</a></li>
+			<li role="presentation"><a th:href="@{/admin/gestioneArticoli}">Gestione articoli</a></li>
+			<li role="presentation"><a th:href="@{/admin/nuovoAdmin}">Registra amministratore</a></li>
+		</ul>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-info" style="margin-top: 30px;">
+					<div class="panel-heading">
+						<h2 class="panel-title">Articolo pi&ugrave; venduto</h2>
+					</div>
+					<div class="panel-body">
+						<div class="col-md-8">
+							<h5>
+								Marca:&nbsp;
+								<th:block th:text="${aPiuVenduto?.marca}">
+							</h5>
+							<h5>
+								Modello:&nbsp;
+								<th:block th:text="${aPiuVenduto?.modello}">
+							</h5>
+							<h5>
+								Prezzo:&nbsp;
+								<th:block
+									th:text="${#numbers.formatCurrency(aPiuVenduto?.prezzo)}">
+							</h5>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-info" style="margin-top: 30px;">
+					<div class="panel-heading">
+						<h2 class="panel-title">Ordine pi&ugrave; costoso</h2>
+					</div>
+					<div class="panel-body">
+						<div class="col-md-8">
+							<h5>
+								Numero ordine:&nbsp;
+								<th:block th:text="${oPiuCostoso?.idOrdine}">
+							</h5>
+							<h5>
+								Utente:&nbsp;
+								<th:block th:text="${oPiuCostoso?.utente.username}">
+							</h5>
+							<h5>
+								Totale:&nbsp;
+								<th:block
+									th:text="${#numbers.formatCurrency(oPiuCostoso?.totale)}">
+							</h5>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		</div>
+		<footer th:include="fragments/footer :: footer"></footer>
+</body>
+
+</html>
